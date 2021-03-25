@@ -1,0 +1,36 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Service invocation in Dapr";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center">
+    @*<h1 class="display-4">Welcome</h1>
+        <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>*@
+
+    <hr />
+
+    <form   method="post">
+        <input type="submit" value="Invoke" />
+    </form>
+
+  <hr />
+
+    <div>
+
+        @if(ViewData["WeatherForecastData"] != null)
+    {
+        <p> Dapr url --> <b>http://webapi-dapr:3500/v1.0/invoke/webapi/method/WeatherForecast </b></p>
+
+        <hr />
+
+        foreach (var forecast in (IEnumerable<WeatherForecast>)ViewData["WeatherForecastData"])
+        {
+        <p>The forecast for @forecast.Date is @forecast.Summary!</p>
+        }
+    }
+    </div>
+
+</div>

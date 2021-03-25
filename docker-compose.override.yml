@@ -1,0 +1,22 @@
+version: '3.4'
+
+services:
+  webapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "50080:80"
+
+  webapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "51080:80"
+
+
+  mobileapp:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "50090:80"
+

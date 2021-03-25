@@ -1,0 +1,25 @@
+﻿@page
+@model StateModel
+@{
+    ViewData["Title"] = "State Store in Dapr";
+}
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<p>State Store ---> [ Redis cache, Azure Redis cache ]</p>
+
+<hr />
+<p>User Token</p>
+<form method="post">
+   UserId --> Key:
+    <input asp-for="_user.Key" />
+   User Token --> Value:
+    <input asp-for="_user.Value" />
+    <input type="submit" />
+</form>
+
+<br />
+@if(ViewData["Key"] != null)
+{
+<p>@ViewData["Key"]</p>
+}

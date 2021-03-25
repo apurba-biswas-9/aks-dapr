@@ -1,0 +1,23 @@
+﻿@page
+@model UserDetailsModel
+@{
+    ViewData["Title"] = "Get User Token From Redis";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+<form method="post">
+    UserId:
+    <input asp-for="_userId" />   
+    <input type="submit"  />
+</form>
+
+<br />
+
+
+@if (ViewData["Key"] != null)
+{
+    <p>@ViewData["Key"]</p>
+}

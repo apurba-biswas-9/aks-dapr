@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapi
+  labels:
+    app: weather-forecast1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: webapi
+  template:
+    metadata:
+      labels:
+        app: weather-forecast
+        service: webapi
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "webapi"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+        - name: webapi
+          image: webapi:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+             - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapi
+  labels:
+    app: weather-forecast
+    service: webapi
+spec:
+#  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+  selector:
+    service: webapi

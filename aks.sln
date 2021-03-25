@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{4303BBF2-8909-4C8D-A3B1-EA5BB32BD293}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{D75344AD-0552-4853-91D2-15E65A94C8EC}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{A63F330E-DD09-4F38-881D-92C0A1FC67C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "aks", "aks", "{23225F22-1818-433C-937E-B5F1CBB3D0C2}"
+	ProjectSection(SolutionItems) = preProject
+		dapr-config.yaml = dapr-config.yaml
+		deploy-mobileapp.yml = deploy-mobileapp.yml
+		deploy-webapi.yml = deploy-webapi.yml
+		deploy-webapp.yml = deploy-webapp.yml
+		rabbitmq.yml = rabbitmq.yml
+		redis.yml = redis.yml
+		secrets.yml = secrets.yml
+		start-all.sh = start-all.sh
+		stop-all.sh = stop-all.sh
+		zipkin.yaml = zipkin.yaml
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mobileApp", "mobileApp\mobileApp.csproj", "{DDBA549C-56B0-470F-AD75-D57D74DBD204}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Component", "Component", "{3EC6DD82-1E0C-4472-BE9F-1113D87A06A2}"
+	ProjectSection(SolutionItems) = preProject
+		statestore.yaml = statestore.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dapr", "dapr", "{100BD2B9-392B-4304-A2A7-39A467FF75E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", "{4CD0C7B7-27CD-403A-A088-8C3DCD966AE8}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\components\pubsub.yaml = dapr\components\pubsub.yaml
+		dapr\components\statestore.yaml = dapr\components\statestore.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{E6CC6393-E5C2-4AD5-846D-DD521C120F86}"
+	ProjectSection(SolutionItems) = preProject
+		dapr\configuration\config.yaml = dapr\configuration\config.yaml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4303BBF2-8909-4C8D-A3B1-EA5BB32BD293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4303BBF2-8909-4C8D-A3B1-EA5BB32BD293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4303BBF2-8909-4C8D-A3B1-EA5BB32BD293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4303BBF2-8909-4C8D-A3B1-EA5BB32BD293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D75344AD-0552-4853-91D2-15E65A94C8EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D75344AD-0552-4853-91D2-15E65A94C8EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D75344AD-0552-4853-91D2-15E65A94C8EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D75344AD-0552-4853-91D2-15E65A94C8EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A63F330E-DD09-4F38-881D-92C0A1FC67C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A63F330E-DD09-4F38-881D-92C0A1FC67C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A63F330E-DD09-4F38-881D-92C0A1FC67C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A63F330E-DD09-4F38-881D-92C0A1FC67C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDBA549C-56B0-470F-AD75-D57D74DBD204}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDBA549C-56B0-470F-AD75-D57D74DBD204}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDBA549C-56B0-470F-AD75-D57D74DBD204}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDBA549C-56B0-470F-AD75-D57D74DBD204}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{3EC6DD82-1E0C-4472-BE9F-1113D87A06A2} = {23225F22-1818-433C-937E-B5F1CBB3D0C2}
+		{4CD0C7B7-27CD-403A-A088-8C3DCD966AE8} = {100BD2B9-392B-4304-A2A7-39A467FF75E2}
+		{E6CC6393-E5C2-4AD5-846D-DD521C120F86} = {100BD2B9-392B-4304-A2A7-39A467FF75E2}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {598B0D71-8AA5-453C-97E4-13B23FB88456}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,32 @@
+﻿@page
+@model WebApp.Pages.PubSubModel
+@{
+    ViewData["Title"] = "Pub/Sub in Dapr";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<p>Pub/Sub ---> [ RabbitMQ ]</p>
+
+<hr />
+
+<form method="post">
+    News Type:
+    <select asp-for="SelectedNewsType" asp-items="Model.Staff">
+        <option value=""></option>
+    </select>
+    @*News Type:
+        <input asp-for="_news.NewsType" />*@
+    News Content:
+    <input asp-for="_news.NewsContent" />
+    <input type="submit" value="Publish" />
+
+
+</form>
+
+<br />
+@if(ViewData["msg"] != null)
+{
+<p>@ViewData["msg"]</p>
+}

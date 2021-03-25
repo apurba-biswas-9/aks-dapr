@@ -1,0 +1,23 @@
+﻿@page
+@model PoliticalModel
+@{
+    ViewData["Title"] = "Subscribed Political News";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div class="text-center">
+
+
+    @if (ViewData["political"] != null)
+    {
+     var i = 0;
+        foreach (var data in (IEnumerable<string>)ViewData["political"])
+        {
+         i++;
+
+    <p>@i  @data</p>
+        }
+    }
+
+</div>
+

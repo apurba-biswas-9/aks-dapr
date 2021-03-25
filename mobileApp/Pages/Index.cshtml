@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Subscribed Sport News";
+}
+
+<h1>@ViewData["Title"]</h1>
+<div class="text-center">
+   
+
+    @if (ViewData["sports"] != null)
+    {
+     var i = 0;
+        foreach (var data in (IEnumerable<string>)ViewData["sports"])
+        {
+         i++;
+
+           <p>@i  @data</p>
+        }
+    }
+   
+    </div>

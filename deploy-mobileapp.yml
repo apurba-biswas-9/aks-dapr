@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mobileapp
+  labels:
+    app: weather-forecast
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: mobileapp
+  template:
+    metadata:
+      labels:
+        app: weather-forecast
+        service: mobileapp
+      annotations:
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "mobileapp"
+        dapr.io/app-port: "80"
+    spec:
+      containers:
+        - name: mobileapp
+          image: webapp:latest      
+          imagePullPolicy: IfNotPresent
+          ports:
+          - name: http
+            containerPort: 80
+            protocol: TCP         
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Development
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mobileapp
+  labels:
+    app: weather-forecast
+    service: mobileapp
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+      targetPort: 80
+      protocol: TCP
+      name: http
+  selector:
+    service: mobileapp
