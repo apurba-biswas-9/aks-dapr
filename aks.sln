@@ -36,6 +36,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "components", "components", 
 	ProjectSection(SolutionItems) = preProject
 		dapr\components\pubsub.yaml = dapr\components\pubsub.yaml
 		dapr\components\statestore.yaml = dapr\components\statestore.yaml
+		statestoresql.yml = statestoresql.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "configuration", "configuration", "{E6CC6393-E5C2-4AD5-846D-DD521C120F86}"

@@ -1,26 +1,26 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
-using WebApp.Models;
 
-namespace WebApp.Pages
+namespace mobileApp.Pages
 {
-    public class StateModel : PageModel
+    public class AwsModel : PageModel
     {
-        private readonly ILogger<StateModel> _logger;
+        private readonly ILogger<UserDetailsModel> _logger;
         private readonly DaprClient _dapr;
 
-        public StateModel(ILogger<StateModel> logger, DaprClient dapr)
+        public AwsModel(ILogger<UserDetailsModel> logger, DaprClient dapr)
         {
             _logger = logger;
             _dapr = dapr;
         }
 
-       
+
 
         public IActionResult OnGet()
         {
@@ -28,7 +28,7 @@ namespace WebApp.Pages
         }
 
         [BindProperty]
-        public User _user{ get; set; }
+        public string _userId { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -37,12 +37,12 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            await DaprUtility.Save(_dapr, "statestore", _user);
-            ViewData["Key"] = $"token : '{_user.Key}' saved in cache ";
+            //reading the value from redis
+            var data = await _dapr.GetStateAsync<string>("statestore", _userId);
+            ViewData["AWSKey"] = $"token : '{data}' ";
 
 
             return Page();
         }
-
     }
 }

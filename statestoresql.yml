@@ -1,0 +1,13 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestoreSql
+  namespace: default
+spec:
+  type: state.sqlserver
+  version: v1
+  metadata:
+  - name: connectionString
+    value: "" # Required.
+  - name: tableName
+    value: "stateStore"  # Required.

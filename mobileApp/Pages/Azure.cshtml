@@ -1,0 +1,23 @@
+﻿@page
+@model mobileApp.Pages.AzureModel
+@{
+    ViewData["Title"] = "Get User Token From Azure Redis Cache";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+<form method="post">
+    UserId:
+    <input asp-for="_userId" />
+    <input type="submit" />
+</form>
+
+<br />
+
+
+@if (ViewData["AzureKey"] != null)
+{
+    <p>@ViewData["AzureKey"]</p>
+}

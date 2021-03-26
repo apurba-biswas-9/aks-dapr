@@ -1,0 +1,26 @@
+﻿@page
+@model WebApp.Pages.AWSModel
+@{
+    ViewData["Title"] = "Sate store in Amazon ElastiCache for Redis using Dapr";
+}
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<p>State Store ---> [ Amazon ElastiCache for Redis ]</p>
+
+<hr />
+<p>User Token</p>
+<form method="post">
+    UserId --> Key:
+    <input asp-for="_user.Key" />
+    User Token --> Value:
+    <input asp-for="_user.Value" />
+    <input type="submit" />
+</form>
+
+<br />
+@if (ViewData["AWSKey"] != null)
+{
+    <p style="color:red">@ViewData["AWSKey"]</p>
+}
+

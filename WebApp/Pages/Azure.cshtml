@@ -1,0 +1,25 @@
+﻿@page
+@model WebApp.Pages.AzureModel
+@{
+    ViewData["Title"] = "Sate store in Azure Redis cashe using Dapr";
+}
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+<p>State Store ---> [Azure Redis cache ]</p>
+
+<hr />
+<p>User Token</p>
+<form method="post">
+    UserId --> Key:
+    <input asp-for="_user.Key" />
+    User Token --> Value:
+    <input asp-for="_user.Value" />
+    <input type="submit" />
+</form>
+
+<br />
+@if (ViewData["AzureKey"] != null)
+{
+    <p style="color:red">@ViewData["Key"]</p>
+}

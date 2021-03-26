@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
@@ -9,18 +10,18 @@ using WebApp.Models;
 
 namespace WebApp.Pages
 {
-    public class StateModel : PageModel
+    public class AWSModel : PageModel
     {
         private readonly ILogger<StateModel> _logger;
         private readonly DaprClient _dapr;
 
-        public StateModel(ILogger<StateModel> logger, DaprClient dapr)
+        public AWSModel(ILogger<StateModel> logger, DaprClient dapr)
         {
             _logger = logger;
             _dapr = dapr;
         }
 
-       
+
 
         public IActionResult OnGet()
         {
@@ -28,7 +29,7 @@ namespace WebApp.Pages
         }
 
         [BindProperty]
-        public User _user{ get; set; }
+        public User _user { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -37,8 +38,9 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            await DaprUtility.Save(_dapr, "statestore", _user);
-            ViewData["Key"] = $"token : '{_user.Key}' saved in cache ";
+            await DaprUtility.Save(_dapr, "AWSstatestore", _user);
+
+            ViewData["AWSKey"] = $"token : '{_user.Key}' saved in cache ";
 
 
             return Page();
@@ -46,3 +48,5 @@ namespace WebApp.Pages
 
     }
 }
+
+

@@ -1,0 +1,24 @@
+﻿@page
+@model mobileApp.Pages.AwsModel
+@{
+    ViewData["Title"] = "Get User Token From AWS Redis Cache";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<hr />
+
+<form method="post">
+    UserId:
+    <input asp-for="_userId" />
+    <input type="submit" />
+</form>
+
+<br />
+
+
+@if (ViewData["AwsKey"] != null)
+{
+    <p>@ViewData["AwsKey"]</p>
+}
+
