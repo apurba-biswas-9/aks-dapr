@@ -38,7 +38,7 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            await DaprUtility.Save(_dapr, "Azurestatestore", _user );
+            await DaprUtility.Save(_dapr, "statestoreSql", _user );
 
             ViewData["AzureKey"] = $"token : '{_user.Key}' saved in cache ";
 

@@ -8,6 +8,10 @@ spec:
   version: v1
   metadata:
   - name: connectionString
-    value: "" # Required.
+    value: "Server=apbadi.database.windows.net;Database=mytestdb;User Id=ap;Password=Password@123;"
   - name: tableName
-    value: "stateStore"  # Required.
+    value: "stateStore"
+  - name: schema
+    value: "dbo"
+  - name: keyPrefix
+    value: MyPrefix

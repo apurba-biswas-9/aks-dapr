@@ -18,7 +18,7 @@ namespace WebApp
             await state.SaveAsync();
 
             //reading the value from redis
-            var data = await _dapr.GetStateAsync<string>("Azurestatestore", _user.Key);
+            var data = await _dapr.GetStateAsync<string>(stateStore, _user.Key);
             Console.WriteLine(data);
         }
     }

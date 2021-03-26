@@ -1,12 +1,12 @@
 ﻿@page
 @model WebApp.Pages.AzureModel
 @{
-    ViewData["Title"] = "Sate store in Azure Redis cashe using Dapr";
+    ViewData["Title"] = "Sate store in Azure SQL Server using Dapr";
 }
 <h1>@ViewData["Title"]</h1>
 
 <hr />
-<p>State Store ---> [Azure Redis cache ]</p>
+<p>State Store ---> [ Azure SQL Server ]</p>
 
 <hr />
 <p>User Token</p>
@@ -21,5 +21,5 @@
 <br />
 @if (ViewData["AzureKey"] != null)
 {
-    <p style="color:red">@ViewData["Key"]</p>
+    <p style="color:red">@ViewData["AzureKey"]</p>
 }
