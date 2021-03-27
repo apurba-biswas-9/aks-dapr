@@ -6,17 +6,24 @@
 
 <h1>@ViewData["Title"]</h1>
 <div class="text-center">
-   
+
 
     @if (ViewData["sports"] != null)
     {
-     var i = 0;
+        var i = 0;
         foreach (var data in (IEnumerable<string>)ViewData["sports"])
         {
-         i++;
+            i++;
 
-           <p>@i  @data</p>
+            if (data.Contains("Redis"))
+            {
+                <p style="background-color:mediumslateblue">@i  @data</p>
+            }
+            else
+            {
+                <p style="background-color:lightcyan">@i  @data</p>
+            }
         }
     }
-   
-    </div>
+
+</div>

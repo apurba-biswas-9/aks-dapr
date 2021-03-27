@@ -12,13 +12,20 @@
 <hr />
 
 <form method="post">
-    News Type:
+
+    Message broker Type :
+    <select asp-for="SelectedMB" asp-items="Model.MB">
+        <option value=""></option>
+    </select>
+    &nbsp;
+    News Type :
     <select asp-for="SelectedNewsType" asp-items="Model.Staff">
         <option value=""></option>
     </select>
+    &nbsp;
     @*News Type:
         <input asp-for="_news.NewsType" />*@
-    News Content:
+    News Content :
     <input asp-for="_news.NewsContent" />
     <input type="submit" value="Publish" />
 

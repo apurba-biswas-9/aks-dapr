@@ -11,10 +11,10 @@ namespace mobileApp.Pages
 {
     public class PoliticalModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
+        private readonly ILogger<PoliticalModel> _logger;
         private IMemoryCache _cache;
 
-        public PoliticalModel(ILogger<IndexModel> logger, IMemoryCache memoryCache)
+        public PoliticalModel(ILogger<PoliticalModel> logger, IMemoryCache memoryCache)
         {
             _cache = memoryCache;
         }
@@ -31,8 +31,6 @@ namespace mobileApp.Pages
                     {
                         ViewData["political"] = dta;
                     }
-
-
                 }
             }
             catch (Exception ex)

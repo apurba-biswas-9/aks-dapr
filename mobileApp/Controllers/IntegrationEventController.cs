@@ -42,10 +42,46 @@ namespace mobileApp.Controllers
             }
         }
 
+        [HttpPost("/subssportRedis")]
+        [Topic("pubsubredis", "sports")]
+        public async Task SubsCribeSportRedis(News news)
+        {
+            var lst = _cache.Get(news.NewsType);
+
+            if (lst != null)
+            {
+                var dta = (List<string>)lst;
+                dta.Add(news.NewsContent);
+                _cache.Set(news.NewsType, dta);
+            }
+            else
+            {
+                _cache.Set(news.NewsType, new List<string> {  news.NewsContent });
+            }
+        }
+
 
         [HttpPost("/subsPolitical")]
         [Topic("pubsub", "political")]
         public async Task SubsCriberPolitical(News news)
+        {
+            var lst = _cache.Get(news.NewsType);
+
+            if (lst != null)
+            {
+                var dta = (List<string>)lst;
+                dta.Add(news.NewsContent);
+                _cache.Set(news.NewsType, dta);
+            }
+            else
+            {
+                _cache.Set(news.NewsType, new List<string> {  news.NewsContent });
+            }
+        }
+
+        [HttpPost("/subsPoliticalRedis")]
+        [Topic("pubsubredis", "political")]
+        public async Task SubsCriberPoliticalRedis(News news)
         {
             var lst = _cache.Get(news.NewsType);
 

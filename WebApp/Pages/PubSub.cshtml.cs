@@ -20,11 +20,8 @@ namespace WebApp.Pages
         }
         public IActionResult OnGet()
         {
-            var staff = new List<NewsType>{
-        new NewsType{ Id = 1, NewsCategory ="Sports"},
-        new NewsType{ Id = 2,  NewsCategory ="Political"}
-    };
-            Staff = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+            GetNewsType();
+            GetMessageBroker();
 
             return Page();
         }
@@ -33,8 +30,13 @@ namespace WebApp.Pages
         public News _news { get; set; }
 
         public SelectList Staff { get; set; }
+
+        public SelectList MB { get; set; }
         [BindProperty]
         public int SelectedNewsType { get; set; }
+
+        [BindProperty]
+        public int SelectedMB { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -46,21 +48,24 @@ namespace WebApp.Pages
                 }
 
                 Console.WriteLine(SelectedNewsType);
+                Console.WriteLine(SelectedMB);
                 Console.WriteLine(_news.NewsContent);
+
+
 
                 _news.NewsType = (SelectedNewsType == 1) ? "sports" : "political";
 
+                var mbType = (SelectedMB == 1) ? "pubsubredis" : "pubsub";
 
-                await _dapr.PublishEventAsync("pubsub", _news.NewsType, new News { NewsType = _news.NewsType, NewsContent = _news.NewsContent });
+                _news.NewsContent = (SelectedMB == 1) ? "Redis----> " + _news.NewsContent : "RabittMQ----> " + _news.NewsContent;
+
+                await _dapr.PublishEventAsync(mbType, _news.NewsType, new News { NewsType = _news.NewsType, NewsContent =   _news.NewsContent });
 
 
                 ViewData["msg"] = "message sent successfully";
 
-                var staff = new List<NewsType>{
-        new NewsType{ Id = 1, NewsCategory ="Sports"},
-        new NewsType{ Id = 2,  NewsCategory ="Political"}
-        };
-                Staff = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+                GetNewsType();
+                GetMessageBroker();
 
             }
             catch (Exception ex)
@@ -71,6 +76,25 @@ namespace WebApp.Pages
 
             return Page();
         }
+
+        public void GetNewsType() 
+        {
+            var staff = new List<NewsType>{
+                 new NewsType{ Id = 1, NewsCategory ="Sports"},
+                 new NewsType{ Id = 2,  NewsCategory ="Political"}
+            };
+            Staff = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+        }
+
+        public void GetMessageBroker()
+        {
+            var staff = new List<NewsType>{
+                 new NewsType{ Id = 1, NewsCategory ="Redis"},
+                 new NewsType{ Id = 2,  NewsCategory ="RabittMQ"}
+            };
+            MB = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+        }
+
     }
 
     public class NewsType
