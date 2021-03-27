@@ -17,6 +17,13 @@ services:
     ports:
       - "5411:9411"  
 
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=example        
+    ports:
+      - '5432:5432'
+
   webapp:
     image: ${DOCKER_REGISTRY-}webapp
     build:

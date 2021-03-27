@@ -1,0 +1,13 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestorePostgresql
+  namespace: default
+spec:
+  type: state.postgresql
+  version: v1
+  metadata:
+  - name: connectionString
+    value: "host=postgres user=postgres password=example port=5432 connect_timeout=30 database=postgres"
+  - name: actorStateStore
+    value: false

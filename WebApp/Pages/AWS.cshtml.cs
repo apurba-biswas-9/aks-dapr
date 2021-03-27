@@ -38,7 +38,7 @@ namespace WebApp.Pages
                 return Page();
             }
 
-            await DaprUtility.Save(_dapr, "AWSstatestore", _user);
+            await DaprUtility.Save(_dapr, "statestorePostgresql", _user);
 
             ViewData["AWSKey"] = $"token : '{_user.Key}' saved in cache ";
 
