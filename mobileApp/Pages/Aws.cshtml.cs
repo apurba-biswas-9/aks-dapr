@@ -38,7 +38,7 @@ namespace mobileApp.Pages
             }
 
             //reading the value from redis
-            var data = await _dapr.GetStateAsync<string>("statestore", _userId);
+            var data = await _dapr.GetStateAsync<string>("statestorePostgresql", _userId);
             ViewData["AWSKey"] = $"token : '{data}' ";
 
 

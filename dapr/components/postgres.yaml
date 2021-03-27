@@ -11,3 +11,5 @@ spec:
     value: "host=postgres user=postgres password=example port=5432 connect_timeout=30 database=postgres"
   - name: actorStateStore
     value: false
+  - name: keyPrefix
+    value: MyPrefix
