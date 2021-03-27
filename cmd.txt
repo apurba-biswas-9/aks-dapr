@@ -1,0 +1,9 @@
+Postgres
+--------------
+psql -U postgres
+select * from state;
+
+Redis 
+------------
+redis-cli
+keys *
