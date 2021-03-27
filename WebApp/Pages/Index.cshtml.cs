@@ -28,13 +28,21 @@ namespace WebApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
-            }
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
 
-            var data = await _service.Gets();
-            ViewData["WeatherForecastData"] = data;
+                var data = await _service.Gets();
+                ViewData["WeatherForecastData"] = data;
+            }
+            catch (Exception ex) 
+            {
+                Console.WriteLine("------------System log--------------");
+                Console.WriteLine(ex);
+            }
 
             return Page();
         }

@@ -21,22 +21,24 @@ namespace mobileApp.Pages
 
         public void OnGet()
         {
-
-            var lst = _cache.Get("political");
-            if (lst != null)
+            try
             {
-                var dta = (List<string>)lst;
-                if (dta?.Count > 0)
+                var lst = _cache.Get("political");
+                if (lst != null)
                 {
-                    ViewData["political"] = dta;
-                }
+                    var dta = (List<string>)lst;
+                    if (dta?.Count > 0)
+                    {
+                        ViewData["political"] = dta;
+                    }
 
-                //    if (keys != null)
-                //{
-                //    keys.ToList().ForEach(x => 
-                //    {
-                //        ViewData["WeatherForecastData"] = ViewData["WeatherForecastData"] + Environment.NewLine + HttpContext.Session.GetString(x);
-                //    });
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("------------System log--------------");
+                Console.WriteLine(ex);
             }
         }
     }

@@ -33,15 +33,23 @@ namespace WebApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
+
+                await DaprUtility.Save(_dapr, "statestorePostgresql", _user);
+
+                ViewData["AWSKey"] = $"token : '{_user.Key}' saved in cache ";
+
             }
-
-            await DaprUtility.Save(_dapr, "statestorePostgresql", _user);
-
-            ViewData["AWSKey"] = $"token : '{_user.Key}' saved in cache ";
-
+            catch (Exception ex)
+            {
+                Console.WriteLine("------------System log--------------");
+                Console.WriteLine(ex);
+            }
 
             return Page();
         }

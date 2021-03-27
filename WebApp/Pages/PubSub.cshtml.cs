@@ -38,27 +38,36 @@ namespace WebApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
-            }
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
 
-            Console.WriteLine(SelectedNewsType);
-            Console.WriteLine(_news.NewsContent);
+                Console.WriteLine(SelectedNewsType);
+                Console.WriteLine(_news.NewsContent);
 
-            _news.NewsType = (SelectedNewsType == 1) ? "sports" : "political";
-
-
-            await _dapr.PublishEventAsync("pubsub", _news.NewsType, new News { NewsType = _news.NewsType, NewsContent = _news.NewsContent });
+                _news.NewsType = (SelectedNewsType == 1) ? "sports" : "political";
 
 
-            ViewData["msg"] = "message sent successfully";
+                await _dapr.PublishEventAsync("pubsub", _news.NewsType, new News { NewsType = _news.NewsType, NewsContent = _news.NewsContent });
 
-            var staff = new List<NewsType>{
+
+                ViewData["msg"] = "message sent successfully";
+
+                var staff = new List<NewsType>{
         new NewsType{ Id = 1, NewsCategory ="Sports"},
         new NewsType{ Id = 2,  NewsCategory ="Political"}
-    };
-            Staff = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+        };
+                Staff = new SelectList(staff, nameof(NewsType.Id), nameof(NewsType.NewsCategory));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("------------System log--------------");
+                Console.WriteLine(ex);
+            }
 
             return Page();
         }

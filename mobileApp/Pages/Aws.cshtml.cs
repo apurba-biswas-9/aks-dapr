@@ -32,15 +32,22 @@ namespace mobileApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return Page();
+                if (!ModelState.IsValid)
+                {
+                    return Page();
+                }
+
+                //reading the value from redis
+                var data = await _dapr.GetStateAsync<string>("statestorePostgresql", _userId);
+                ViewData["AWSKey"] = $"token : '{data}' ";
             }
-
-            //reading the value from redis
-            var data = await _dapr.GetStateAsync<string>("statestorePostgresql", _userId);
-            ViewData["AWSKey"] = $"token : '{data}' ";
-
+            catch (Exception ex)
+            {
+                Console.WriteLine("------------System log--------------");
+                Console.WriteLine(ex);
+            }
 
             return Page();
         }
