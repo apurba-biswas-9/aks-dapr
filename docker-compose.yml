@@ -15,7 +15,13 @@ services:
   zipkin:
     image: openzipkin/zipkin-slim
     ports:
-      - "5411:9411"  
+      - "9411:9411"  
+
+  #dashboard:
+  #  image: dapr_dashboard_cp:latest
+  #  container_name: dashboard
+  #  ports:
+  #    - "8080:8080"
 
   postgres:
     image: postgres:latest

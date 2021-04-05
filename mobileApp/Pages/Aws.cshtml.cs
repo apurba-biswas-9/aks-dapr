@@ -49,6 +49,8 @@ namespace mobileApp.Pages
                 Console.WriteLine(ex);
             }
 
+              Redirect("~/Page/Index");
+
             return Page();
         }
     }

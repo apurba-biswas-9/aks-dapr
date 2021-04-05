@@ -1,0 +1,19 @@
+﻿@page
+@model WebApp.Pages.Message1Model
+@{
+    ViewData["Title"] = "Message";
+}
+
+<div>
+
+    @if (ViewData["msg"] != null)
+    {
+    <p style="color:red"><b>@ViewData["msg"]</b></p>
+    }
+
+
+    <form method="post">
+        <input type="submit" value="Back" />
+
+    </form>
+</div>

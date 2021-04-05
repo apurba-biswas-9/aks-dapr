@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 @{
     ViewData["Title"] = "Service invocation in Dapr";
@@ -12,25 +13,26 @@
 
     <hr />
 
-    <form   method="post">
+    <form method="post">
         <input type="submit" value="Invoke" />
+        @Html.AntiForgeryToken()
     </form>
 
-  <hr />
+    <hr />
 
     <div>
 
-        @if(ViewData["WeatherForecastData"] != null)
-    {
-        <p> Dapr url --> <b>http://webapi-dapr:3500/v1.0/invoke/webapi/method/WeatherForecast </b></p>
-
-        <hr />
-
-        foreach (var forecast in (IEnumerable<WeatherForecast>)ViewData["WeatherForecastData"])
+        @if (ViewData["WeatherForecastData"] != null)
         {
-        <p>The forecast for @forecast.Date is @forecast.Summary!</p>
+            <p> Dapr url --> <b>http://webapi-dapr:3500/v1.0/invoke/webapi/method/WeatherForecast </b></p>
+
+            <hr />
+
+            foreach (var forecast in (IEnumerable<WeatherForecast>)ViewData["WeatherForecastData"])
+            {
+                <p>The forecast for @forecast.Date is @forecast.Summary!</p>
+            }
         }
-    }
     </div>
 
 </div>

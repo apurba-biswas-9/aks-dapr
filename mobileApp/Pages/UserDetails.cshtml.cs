@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Dapr.Client;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 
 namespace mobileApp.Pages
@@ -24,8 +25,13 @@ namespace mobileApp.Pages
 
         public IActionResult OnGet()
         {
+            GetStates();
             return Page();
         }
+
+        public SelectList StateLst { get; set; }
+        [BindProperty]
+        public int SelectedStateType { get; set; }
 
         [BindProperty]
         public string _userId { get; set; }
@@ -39,9 +45,17 @@ namespace mobileApp.Pages
                     return Page();
                 }
 
+                var type = string.Empty;
+                if (SelectedStateType is 1)
+                    type = "statestore";
+                else if (SelectedStateType is 2)
+                    type = "statestorePostgresql";
+                else
+                    type = "statestoreSql";
+
                 //reading the value from redis
-                var data = await _dapr.GetStateAsync<string>("statestore", _userId);
-                ViewData["Key"] = $"token : '{data}' ";
+                var data = await _dapr.GetStateAsync<string>(type, _userId);
+                ViewData["Key"] = $"User: {_userId} | Token : {data} ";
             }
             catch (Exception ex)
             {
@@ -49,8 +63,35 @@ namespace mobileApp.Pages
                 Console.WriteLine(ex);
             }
 
+            GetStates();
 
-            return Page();
+            //this.SelectedStateType = 0;
+            this._userId = string.Empty;
+
+            this.ModelState.Clear();
+
+           // return Redirect("~/Index");
+          
+
+             return Page();
         }
+
+        public void GetStates()
+        {
+
+            var staff = new List<StateType>{
+                 new StateType{ Id = 1, NewsCategory ="Redis"},
+                 new StateType{ Id = 2,  NewsCategory ="PostgreSQL"},
+                 new StateType{ Id = 3,  NewsCategory ="Sql Server"}
+            };
+            StateLst = new SelectList(staff, nameof(StateType.Id), nameof(StateType.NewsCategory));
+        }
+    }
+
+    public class StateType
+    {
+        public int Id { get; set; }
+        public string NewsCategory { get; set; }
+
     }
 }

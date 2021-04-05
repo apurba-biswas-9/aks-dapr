@@ -44,7 +44,11 @@ namespace WebApp.Pages
                 Console.WriteLine(ex);
             }
 
-            return Page();
+            this.ModelState.Clear();
+
+             return Page();
+
+           // return Redirect("~/Index");
         }
     }
 }

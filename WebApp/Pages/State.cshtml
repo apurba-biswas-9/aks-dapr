@@ -1,25 +1,47 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model StateModel
 @{
-    ViewData["Title"] = "State Store in Redis";
+    ViewData["Title"] = "State Management";
 }
 <h1>@ViewData["Title"]</h1>
 
 <hr />
-<p>State Store ---> [ Redis ]</p>
+<p>State Management ---> [ Redis, PostgreSql, Sql Server ]</p>
+    <hr />
+    <p> Dapr Api :</p>
+     Redis  -->  </>
+    <b> http://webapi-dapr:3500/v1.0/sate/statestore/ </b>
+    <br />
 
-<hr />
+     PostgreSQL  -->  </>
+    <b> http://webapi-dapr:3500/v1.0/sate/statestorePostgresql/ </b>
+    <br />
+
+     Sql Server  --> 
+    <b> http://webapi-dapr:3500/v1.0/sate/statestoreSql/ </b>
+
+    <hr />
+
 <p>User Token</p>
 <form method="post">
-   UserId --> Key:
+
+    State Store Type :
+    <select asp-for="SelectedStateType" asp-items="Model.StateLst">
+        <option value=""></option>
+    </select>
+    &nbsp;
+    UserId --> Key:
     <input asp-for="_user.Key" />
-   User Token --> Value:
+    &nbsp;
+    User Token --> Value:
     <input asp-for="_user.Value" />
     <input type="submit" />
+    @Html.AntiForgeryToken()
 </form>
 
 <br />
-@if(ViewData["Key"] != null)
+@if (ViewData["Key"] != null)
 {
-<p style="color:red">@ViewData["Key"]</p>
+    <p style="color:red">@ViewData["Key"]</p>
 }

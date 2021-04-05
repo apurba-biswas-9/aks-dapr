@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model IndexModel
 @{
     ViewData["Title"] = "Subscribed Sport News";
@@ -25,5 +26,5 @@
             }
         }
     }
-
+    @Html.AntiForgeryToken()
 </div>

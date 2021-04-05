@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model WebApp.Pages.PubSubModel
 @{
     ViewData["Title"] = "Pub/Sub in Dapr";
@@ -9,6 +10,15 @@
 <hr />
 <p>Pub/Sub ---> [ Redis, RabbitMQ ]</p>
 
+<hr />
+<p> Dapr Api :</p>
+ rabbitmq  -->  </>
+<b> http://webapi-dapr:3500/v1.0/publish/pubsub/sports </b>
+<br />
+
+ redis  -->  </>
+<b> http://webapi-dapr:3500/v1.0/publish/pubsubredis/sports </b>
+<br />
 <hr />
 
 <form method="post">
@@ -28,13 +38,13 @@
     News Content :
     <input asp-for="_news.NewsContent" />
     <input type="submit" value="Publish" />
-
+    @Html.AntiForgeryToken()
 
 </form>
 
 <br />
 
-@if(ViewData["msg"] != null)
+@if (ViewData["msg"] != null)
 {
-<p style="color:red">@ViewData["msg"]</p>
+    <p style="color:red"><b>@ViewData["msg"]</b></p>
 }

@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model mobileApp.Pages.AwsModel
 @{
     ViewData["Title"] = "Get User Token From PostgreSql";
@@ -12,6 +13,7 @@
     UserId:
     <input asp-for="_userId" />
     <input type="submit" />
+    @Html.AntiForgeryToken()
 </form>
 
 <br />

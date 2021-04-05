@@ -22,7 +22,7 @@ namespace WebApp
         public async Task<List<WeatherForecast>> Gets()
         {
             var request = new HttpRequestMessage(HttpMethod.Get, $"WeatherForecast");
-            var response = await _httpClient.SendAsync(request);
+            var response = await _httpClient.SendAsync(request);    
             //Console.WriteLine("_httpClient.BaseAddress" + _httpClient.BaseAddress.ToString());
             //Console.WriteLine("_httpClient" + _httpClient.ToString());
             //Console.WriteLine("Request");

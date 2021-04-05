@@ -1,0 +1,17 @@
+apiVersion: dapr.io/v1alpha1
+kind: Component
+metadata:
+  name: statestoreSql
+  namespace: default
+spec:
+  type: state.sqlserver
+  version: v1
+  metadata:
+  - name: connectionString
+    value: "Server=10.141.68.252;Database=Practice;User Id=ap;Password=ap;"
+  - name: tableName
+    value: "stateStore"
+  - name: schema
+    value: "dbo"
+  - name: keyPrefix
+    value: MyPrefix

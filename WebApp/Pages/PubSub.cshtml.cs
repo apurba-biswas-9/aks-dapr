@@ -40,13 +40,16 @@ namespace WebApp.Pages
 
         public async Task<IActionResult> OnPostAsync()
         {
+            #region 
             try
             {
+                
                 if (!ModelState.IsValid)
                 {
                     return Page();
                 }
 
+               
                 Console.WriteLine(SelectedNewsType);
                 Console.WriteLine(SelectedMB);
                 Console.WriteLine(_news.NewsContent);
@@ -59,13 +62,20 @@ namespace WebApp.Pages
 
                 _news.NewsContent = (SelectedMB == 1) ? "Redis----> " + _news.NewsContent : "RabittMQ----> " + _news.NewsContent;
 
+                #endregion
+
                 await _dapr.PublishEventAsync(mbType, _news.NewsType, new News { NewsType = _news.NewsType, NewsContent =   _news.NewsContent });
 
+                #region
 
-                ViewData["msg"] = "message sent successfully";
+                ViewData["msg"] = "Message sent successfully";
 
                 GetNewsType();
                 GetMessageBroker();
+
+                #endregion
+
+                #region
 
             }
             catch (Exception ex)
@@ -74,7 +84,13 @@ namespace WebApp.Pages
                 Console.WriteLine(ex);
             }
 
-            return Page();
+            _news.NewsContent = string.Empty;
+            _news.NewsType = string.Empty;
+            this.ModelState.Clear();
+
+           return RedirectToPage("Message1", new { msg = ViewData["msg"] .ToString()} );
+            #endregion 
+            //return Page();
         }
 
         public void GetNewsType() 
